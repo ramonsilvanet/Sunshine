@@ -26,6 +26,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -70,13 +72,15 @@ public class ForecastFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        String [] weekForecasts = {
+        String [] forecasts = {
             "Today - Sunny - 88/63",
             "Tomorrow - Sunny - 89/69",
             "Friday - Cloudy - 78/91",
             "Saturday - Rainy - 64/51",
             "Sunday - Foggy - 70/46",
             "Monday - Sunny - 70/68" };
+
+        ArrayList<String> weekForecasts = new ArrayList<String>(Arrays.asList(forecasts));
 
         mForecastAdapter = new ArrayAdapter<String>(getActivity(),
                                         R.layout.list_item_forecast,
@@ -189,6 +193,8 @@ public class ForecastFragment extends Fragment {
     }
 
     private class WeatherForecastAsyncTask extends AsyncTask<Void, Void, String[]> {
+
+        private final String LOG_TAG = WeatherForecastAsyncTask.class.getSimpleName();
 
         @Override
         protected String[] doInBackground(Void... params) {
