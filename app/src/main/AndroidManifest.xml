@@ -36,6 +36,11 @@
             </intent-filter>
         </activity>
 
+        <provider
+            android:authorities="net.ramonsilva.sunshine.app"
+            android:name=".data.WeatherProvider" />
+
+
     </application>
 
 </manifest>
