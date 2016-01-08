@@ -30,14 +30,14 @@ import java.util.Vector;
 /**
  * Created by Rfsilva on 08/12/2015.
  */
-public class WeatherForecastAsyncTask extends AsyncTask<String, Void, String[]> {
+public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
-    private final String LOG_TAG = WeatherForecastAsyncTask.class.getSimpleName();
+    private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
 
     private Context mContext;
     private ArrayAdapter mAdapter;
 
-    public WeatherForecastAsyncTask(Context context, ArrayAdapter adapter){
+    public FetchWeatherTask(Context context, ArrayAdapter adapter){
         mContext = context;
         mAdapter = adapter;
     }

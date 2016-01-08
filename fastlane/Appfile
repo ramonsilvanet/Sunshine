@@ -1,0 +1,3 @@
+issuer "" # Follow https://github.com/fastlane/supply#setup to get one
+keyfile "" # Path to the keyfile
+package_name "net.ramonsilva.sunshine.app" # e.g. com.krausefx.app

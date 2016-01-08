@@ -15,7 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import net.ramonsilva.sunshine.app.data.WeatherForecastAsyncTask;
+import net.ramonsilva.sunshine.app.data.FetchWeatherTask;
 
 import java.util.ArrayList;
 
@@ -67,7 +67,7 @@ public class ForecastFragment extends Fragment {
 
 
     private void updateForecast(){
-        WeatherForecastAsyncTask weatherTask = new WeatherForecastAsyncTask(getActivity(), mForecastAdapter);
+        FetchWeatherTask weatherTask = new FetchWeatherTask(getActivity(), mForecastAdapter);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String location = prefs.getString(getString(R.string.pref_location_key),
                 getString(R.string.pref_location_default));
