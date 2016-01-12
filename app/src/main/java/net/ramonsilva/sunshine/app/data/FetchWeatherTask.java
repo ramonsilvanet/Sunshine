@@ -160,10 +160,11 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
             // current day, we're going to take advantage of that to get a nice
             // normalized UTC date for all of our weather.
 
-            final Calendar dayTime = Calendar.getInstance();
+            Time dayTime = new Time();
+            dayTime.setToNow();
 
             // we start at the day returned by local time. Otherwise this is a mess.
-            int julianStartDay = dayTime.getFirstDayOfWeek();
+            int julianStartDay = Time.getJulianDay(System.currentTimeMillis(), dayTime.gmtoff);
 
             // now we work exclusively in UTC
             //dayTime = new Time();
@@ -186,8 +187,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
                 final JSONObject dayForecast = weatherArray.getJSONObject(i);
 
                 // Cheating to convert this to UTC time, which is what we want anyhow
-                dayTime.add(Calendar.DATE, 1);
-                dateTime = dayTime.getTimeInMillis();
+                dateTime = dayTime.setJulianDay(julianStartDay+i);
 
                 pressure = dayForecast.getDouble(OWM_PRESSURE);
                 humidity = dayForecast.getInt(OWM_HUMIDITY);
@@ -311,7 +311,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
             forecastJsonStr = buffer.toString();
             getWeatherDataFromJson(forecastJsonStr, locationQuery);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error ", e);
+            Log.e(LOG_TAG, "Error  de IO", e);
             // If the code didn't successfully get the weather data, there's no point in attempting
             // to parse it.
         } catch (JSONException e) {
