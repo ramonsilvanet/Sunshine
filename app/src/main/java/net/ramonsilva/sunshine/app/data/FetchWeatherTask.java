@@ -241,12 +241,16 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
 
     @Override
     protected Void doInBackground(String... params) {
+        Log.d(LOG_TAG, "executing in background...");
 
         // If there's no zip code, there's nothing to look up.  Verify size of params.
         if (params.length == 0) {
             return null;
         }
-        String locationQuery = params[0];
+
+        final String locationQuery = params[0];
+
+        Log.d(LOG_TAG, "locationQuery " + locationQuery);
 
         // These two need to be declared outside the try/catch
         // so that they can be closed in the finally block.
@@ -256,7 +260,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
         // Will contain the raw JSON response as a string.
         String forecastJsonStr = null;
 
-        String format = "json";
+        final String format = "json";
         String units = "metric";
         int numDays = 14;
 
@@ -272,7 +276,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
             final String DAYS_PARAM = "cnt";
             final String APPID_PARAM = "APPID";
 
-            Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
+            final Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
                     .appendQueryParameter(QUERY_PARAM, params[0])
                     .appendQueryParameter(FORMAT_PARAM, format)
                     .appendQueryParameter(UNITS_PARAM, units)
@@ -280,7 +284,9 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
                     .appendQueryParameter(APPID_PARAM, BuildConfig.OPEN_WEATHER_MAP_API_KEY)
                     .build();
 
-            URL url = new URL(builtUri.toString());
+            final URL url = new URL(builtUri.toString());
+
+            Log.d(LOG_TAG, "Url : " + url);
 
             // Create the request to OpenWeatherMap, and open the connection
             urlConnection = (HttpURLConnection) url.openConnection();

@@ -3,17 +3,17 @@
   <testsuite name="run">
     
       
-      <testcase name="0: Verifying required fastlane version" time="0.000555">
+      <testcase name="0: Verifying required fastlane version" time="0.000785">
         
       </testcase>
     
       
-      <testcase name="1: default_platform" time="0.000451">
+      <testcase name="1: default_platform" time="0.000288">
         
       </testcase>
     
       
-      <testcase name="2: gradle" time="19.927478">
+      <testcase name="2: gradle" time="13.496093">
         
       </testcase>
     
