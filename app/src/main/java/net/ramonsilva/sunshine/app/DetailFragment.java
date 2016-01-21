@@ -129,7 +129,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
         final Intent intent = getActivity().getIntent();
 
-        if(intent == null){
+        if (intent == null || intent.getData() == null) {
             return null;
         }
 

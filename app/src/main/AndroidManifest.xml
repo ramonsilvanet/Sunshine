@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ForecastDetails"
+        <activity android:name=".DetailActivity"
             android:label="@string/title_activity_display_message"
             android:parentActivityName=".MainActivity">
             <meta-data

@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import net.ramonsilva.sunshine.app.data.WeatherContract;
 
-public class ForecastDetails extends ActionBarActivity  {
+public class DetailActivity extends ActionBarActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class ForecastDetails extends ActionBarActivity  {
         setContentView(R.layout.activity_forecast_details);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new DetailFragment())
+                    .add(R.id.weather_detail_container, new DetailFragment())
                     .commit();
         }
     }

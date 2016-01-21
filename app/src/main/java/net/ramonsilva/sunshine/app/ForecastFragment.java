@@ -126,7 +126,7 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
 
                 if(cursor != null){
                     final String locationSetting = Utility.getPreferredLocation(getActivity());
-                    final Intent intent = new Intent(getActivity(), ForecastDetails.class);
+                    final Intent intent = new Intent(getActivity(), DetailActivity.class);
 
                     intent.setData(WeatherContract.WeatherEntry
                             .buildWeatherLocationWithDate(
