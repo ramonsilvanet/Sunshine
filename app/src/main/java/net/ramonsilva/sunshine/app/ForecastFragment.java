@@ -85,11 +85,6 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
             return true;
         }
 
-        if (id == R.id.action_settings) {
-            updateWeather();
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
