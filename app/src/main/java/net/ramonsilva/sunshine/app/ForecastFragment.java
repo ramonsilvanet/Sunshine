@@ -93,6 +93,7 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
         getLoaderManager().restartLoader(FORECAST_CURSOR_LOADER, null, this);
     }
 
+
     private void updateWeather(){
         Log.d(LOG_TAG, "updating Forecast");
         final FetchWeatherTask weatherTask = new FetchWeatherTask(getActivity());
@@ -125,15 +126,11 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
                 final Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
 
                 if(cursor != null){
-                    final String locationSetting = Utility.getPreferredLocation(getActivity());
-                    final Intent intent = new Intent(getActivity(), DetailActivity.class);
-
-                    intent.setData(WeatherContract.WeatherEntry
-                            .buildWeatherLocationWithDate(
-                                    locationSetting,
-                                    cursor.getLong(COL_WEATHER_DATE)));
-
-                    startActivity(intent);
+                    String locationSetting = Utility.getPreferredLocation(getActivity());
+                    ((Callback) getActivity())
+                            .onItemSelected(WeatherContract.WeatherEntry.buildWeatherLocationWithDate(
+                                    locationSetting, cursor.getLong(COL_WEATHER_DATE)
+                            ));
                 }
             }
 
@@ -172,5 +169,11 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
         mForecastAdapter.swapCursor(null);
+    }
+
+
+    public interface Callback{
+
+        void onItemSelected(Uri dateUri);
     }
 }
