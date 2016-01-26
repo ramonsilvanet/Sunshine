@@ -13,9 +13,11 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity implements ForecastFragment.Callback {
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
+
     private String mLocation;
 
     private final String DETAILFRAGMENT_TAG = "FFTAG";
+
     private boolean mTwoPane;
 
     @Override
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements ForecastFragment.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
+
 
     @Override
     protected void onResume() {
