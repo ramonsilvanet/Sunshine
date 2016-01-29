@@ -23,6 +23,8 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.content.CursorLoader;
 
+import java.util.List;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -34,12 +36,13 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
 
     private ForecastAdapter mForecastAdapter;
 
-    private int mScrollPosition;
+    private int mScrollPosition = ListView.INVALID_POSITION
 
     private static String SCROLL_POSITION = "scrollPosition";
 
     private ListView mListView;
 
+    private boolean mUseTodayLayout;
 
     private static final String[] FORECAST_COLUMNS = {
             WeatherContract.WeatherEntry.TABLE_NAME + "." + WeatherContract.WeatherEntry._ID,
@@ -155,6 +158,8 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
             mScrollPosition = savedInstanceState.getInt(SCROLL_POSITION);
         }
 
+        mForecastAdapter.setUseTodayLayout(mUseTodayLayout);
+
         return rootView;
     }
 
@@ -198,5 +203,12 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
     public interface Callback{
 
         void onItemSelected(Uri dateUri);
+    }
+
+    public void setUseTodayLayout(boolean useTodayLayout) {
+        mUseTodayLayout = useTodayLayout;
+        if (mForecastAdapter != null) {
+            mForecastAdapter.setUseTodayLayout(mUseTodayLayout);
+        }
     }
 }
