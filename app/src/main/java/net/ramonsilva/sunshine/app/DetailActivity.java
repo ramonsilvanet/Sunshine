@@ -22,15 +22,22 @@ import android.widget.TextView;
 
 import net.ramonsilva.sunshine.app.data.WeatherContract;
 
-public class ForecastDetails extends ActionBarActivity  {
+public class DetailActivity extends ActionBarActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast_details);
         if (savedInstanceState == null) {
+
+            Bundle arguments = new Bundle();
+            arguments.putParcelable(DetailFragment.DETAIL_URI, getIntent().getData());
+
+            DetailFragment fragment = new DetailFragment();
+            fragment.setArguments(arguments);
+
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new DetailFragment())
+                    .add(R.id.weather_detail_container, fragment)
                     .commit();
         }
     }
