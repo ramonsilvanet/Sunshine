@@ -36,7 +36,7 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
 
     private ForecastAdapter mForecastAdapter;
 
-    private int mScrollPosition = ListView.INVALID_POSITION
+    private int mScrollPosition = ListView.INVALID_POSITION;
 
     private static String SCROLL_POSITION = "scrollPosition";
 

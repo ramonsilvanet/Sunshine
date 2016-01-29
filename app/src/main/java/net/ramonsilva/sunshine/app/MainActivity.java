@@ -45,8 +45,9 @@ public class MainActivity extends AppCompatActivity implements ForecastFragment.
                         .findFragmentById(R.id.fragment_forecast));
         forecastFragment.setUseTodayLayout(!mTwoPane);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       // setSupportActionBar(toolbar);
+        getSupportActionBar().setElevation(0f);
     }
 
 
