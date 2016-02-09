@@ -1,6 +1,5 @@
 package net.ramonsilva.sunshine.app;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,15 +14,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import net.ramonsilva.sunshine.app.data.FetchWeatherTask;
 import net.ramonsilva.sunshine.app.data.ForecastAdapter;
 import net.ramonsilva.sunshine.app.data.WeatherContract;
+import net.ramonsilva.sunshine.app.sync.SunshineSyncAdapter;
 
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.content.CursorLoader;
-
-import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -112,9 +109,18 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
 
     private void updateWeather(){
         Log.d(LOG_TAG, "updating Forecast");
-        final FetchWeatherTask weatherTask = new FetchWeatherTask(getActivity());
-        final String location = Utility.getPreferredLocation(getActivity());
-        weatherTask.execute(location);
+        /*Intent alarmIntent = new Intent(getActivity(), SunshineService.AlarmReceiver.class);
+        alarmIntent.putExtra(SunshineService.LOCATION_QUERY_EXTRA, Utility.getPreferredLocation(getActivity()));
+
+        //Wrap in a pending intent which only fires once.
+        PendingIntent pi = PendingIntent.getBroadcast(getActivity(), 0,alarmIntent,PendingIntent.FLAG_ONE_SHOT);//getBroadcast(context, 0, i, 0);
+
+        AlarmManager am=(AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
+
+        //Set the AlarmManager to wake up the system.
+        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, pi);*/
+
+        SunshineSyncAdapter.syncImmediately(getActivity());
     }
 
     @Override
